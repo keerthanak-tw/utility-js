@@ -1,3 +1,5 @@
+const tail = require('./tail');
+
 function findMin(list, minElement) {
 	if (list.length == 0){
 		return minElement;
@@ -6,14 +8,12 @@ function findMin(list, minElement) {
 		if (list[0] < minElement){
 			minElement = list[0];
 		}
-		list.splice(0,1);
-		return findMin(list, minElement);
+		return findMin(tail(list), minElement);
 	}
 }
 const min = (list) => {
 	var minElement = list[0];
-	list.splice(0,1);
-	minValue = findMin(list, minElement);
+	minValue = findMin(tail(list), minElement);
 	return minValue
 }
 module.exports = findMin;
