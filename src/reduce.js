@@ -1,4 +1,4 @@
-const reduce = (list, reducer, initialValue) =>{ //List will be mapped to another list according to applyFunction
+const reduce = (list, reducer, initialValue) =>{ //List will be reduced according to the reducer
 	let reducedValue;
 	if (initialValue == undefined) {
 		if (typeof(list[0]) == "string"){
