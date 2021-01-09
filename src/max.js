@@ -1,3 +1,5 @@
+const tail = require('./tail');
+
 function findMax(list, maxElement) {
 	if (list.length == 0){
 		return maxElement;
@@ -6,14 +8,12 @@ function findMax(list, maxElement) {
 		if (list[0] > maxElement){
 			maxElement = list[0];
 		}
-		list.splice(0,1);
-		return findMax(list, maxElement);
+		return findMax(tail(list), maxElement);
 	}
 }
 const max = (list) => {
 	maxElement = list[0];
-	list.splice(0,1);
-	maxValue = findMax(list, maxElement);
+	maxValue = findMax(tail(list), maxElement);
 	return maxValue
 }
 module.exports = findMax;
