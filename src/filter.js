@@ -1,11 +1,19 @@
-const filter = (list, applyFunction) =>{ //List will be filtered according to applyFunction
-	var functionAppliedList = [];
-	for ( let i = 0; i < list.length; i++){
-		var filterStatus = applyFunction(list[i], i, list);
+const tail = require('./tail');
+
+const filterList = (list, applyFilter, filterAppliedList) => {
+	if (list.length > 0) {
+		var filterStatus = applyFilter(list[0]);
 		if (filterStatus){
-			functionAppliedList.push(list[i]);
+			filterAppliedList.push(list[0]);
 		}
+		return filterList(tail(list), applyFilter, filterAppliedList);
 	}
-	return functionAppliedList;
+	return filterAppliedList
+}
+
+const filter = (list, applyFilter) => { //List will be filtered according to applyFilter
+	var filterAppliedList = [];
+	filterAppliedList = filterList(list, applyFilter, filterAppliedList)
+	return filterAppliedList;
 }
 module.exports = filter;
